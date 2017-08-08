@@ -1,3 +1,4 @@
+import math
 
 
 def get_prime_numbers_until(highest_number):
@@ -21,19 +22,8 @@ def is_prime(number):
     return True
 
 
-number = 600851475143
-root = number ** 0.5
-print(root)
-prime_numbers = get_prime_numbers_until(int(root))
-result = 0
-for prime_number in reversed(prime_numbers):
-    if number % prime_number == 0:
-        result = prime_number
-        break
-
-# for num in reversed(range(2, int(number ** .5))):
-#     if number % num == 0:
-#         if is_prime(num):
-#             result = num
-#             break
-print(result)
+prime_numbers = get_prime_numbers_until(100000000)
+# print(prime_numbers)
+print(len(prime_numbers))
+# print(prime_numbers[-10:])
+# print(is_prime(100000000003))
