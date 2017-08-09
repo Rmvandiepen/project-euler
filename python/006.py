@@ -11,6 +11,4 @@ sum_of_square = sum_of_square(numbers)
 square_of_sum = square_of_sum(numbers)
 difference = abs(sum_of_square - square_of_sum)
 
-print(sum_of_square)
-print(square_of_sum)
 print(difference)
