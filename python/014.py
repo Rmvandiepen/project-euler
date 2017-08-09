@@ -17,7 +17,6 @@
 
 chain_lengths = {1: 1}
 
-
 def get_chain_length(number):
     if number in chain_lengths:
         return chain_lengths[number]

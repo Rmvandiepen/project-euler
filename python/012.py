@@ -1,4 +1,4 @@
-from helpers import get_next_prime, is_prime
+from helpers import get_next_prime, is_prime, get_xth_prime_number
 
 divisable_by = {}
 
@@ -30,7 +30,7 @@ def get_divisables(number):
 num = 1
 step = 2
 while True:
-    if num % 10 == 0 and len(get_divisables(num)) > 500:
+    if num % 12 == 0 and len(get_divisables(num)) > 500:
         break
     num += step
     step += 1
