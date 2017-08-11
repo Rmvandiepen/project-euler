@@ -1,52 +1,45 @@
+from helpers import product
 
-2 - 2 - 2
-0123456789
-0123456798
+def first_solution():
+	string = ''
+	posibilities_left = 10 ** 6 - 1
+	numbers_left = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	while True:
+		number = 0
+		to_substract = 0
+		for x in range(1, len(numbers_left) + 1):
+			posibilities_with_nums = product(list(range(1, x + 1)))
+			if posibilities_with_nums > posibilities_left:
+				to_substract = product(list(range(1, x)))
+				break
+			elif posibilities_with_nums == posibilities_left:
+				to_substract = product(list(range(1, x + 1)))
+				break
+		fits = int(posibilities_left / to_substract)
+		number = numbers_left.pop(fits)
+		string += str(number)
+		posibilities_left -= int(posibilities_left / to_substract) * to_substract
+		if posibilities_left == 0:
+			break
+	string += ''.join([str(num) for num in numbers_left])
+	return string
+print(first_solution())
 
-3 - 4 - 6
-0123456879
-0123456897
-0123456978
-0123456987
+def second_solution():
+	max_num = 9
+	cur_string = ''
+	def get_nums(nums):
+		pos = []
+		for x in range(0, max_num + 1):
+			if x in nums:
+				continue
+			if len(nums) == max_num:
+				return [''.join([str(num) for num in nums + [x]])]
+			else:
+				pos += get_nums(nums + [x])
+		return pos
 
-4 - 12 - 18
-0123457689
-0123457698
-0123457869
-0123457896
-0123458679
-0123458697
-0123458769
-0123458796
-0123459678
-0123459687
-0123459768
-0123459786
+	posibiities = get_nums([])
+	return posibiities[1000000 - 1]
 
-5 - 96 - 114
-0123465789
-0123465798
-0123465879
-0123465897
-0123465978
-0123465987
-0123467589
-0123467598
-0123467859
-0123467895
-0123467958
-0123467985
-0123468579
-0123468597
-0123468879
-0123468795
-0123468957
-0123468975
-0123469578
-0123469587
-0123469878
-0123469785
-0123469857
-0123469875
-
-
+# print(second_solution())

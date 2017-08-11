@@ -76,3 +76,10 @@ def get_divisables(number):
     divisors = list(set(divisors))
     divisable_by[number] = divisors
     return list(divisors)
+
+
+def product(int_list):
+    result = 1
+    for x in int_list:
+        result *= x
+    return result
