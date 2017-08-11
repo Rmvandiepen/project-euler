@@ -3,9 +3,10 @@ from helpers import get_divisables
 num = 1
 step = 2
 while True:
-    if num % 12 == 0 and len(get_divisables(num)) > 500:
+    divs = get_divisables(num)
+    if num % 12 == 0 and len(divs) > 600:
         break
     num += step
     step += 1
 
-print(num)
+print(num, len(divs))
