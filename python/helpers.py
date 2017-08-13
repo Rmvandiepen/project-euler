@@ -83,3 +83,10 @@ def product(int_list):
     for x in int_list:
         result *= x
     return result
+
+
+def get_factorial(number):
+    result = 1
+    for i in range(2, number + 1):
+        result *= i
+    return result
