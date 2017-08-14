@@ -90,3 +90,27 @@ def get_factorial(number):
     for i in range(2, number + 1):
         result *= i
     return result
+
+
+def get_base_x_value(number, base):
+    i = 1
+    while True:
+        if number < base ** i:
+            power = i - 1
+            break
+        i += 1
+    value = ''
+    while power >= 0:
+        base_power = base ** power
+        if number >= base_power:
+            fits = int(number / base_power)
+            value += str(fits)
+            number -= fits * base_power
+        else:
+            value += '0'
+        power -= 1
+    return value
+
+
+def get_binary_value(number):
+    return get_base_x_value(number, 2)
