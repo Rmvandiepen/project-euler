@@ -4,6 +4,7 @@ next_primes = {
 }
 
 divisable_by = {}
+calculated_primes = {}
 
 
 def get_prime_numbers_until(highest_number):
@@ -19,11 +20,19 @@ def get_prime_numbers_until(highest_number):
 
 
 def is_prime(number):
+    if number in calculated_primes:
+        return calculated_primes[number]
+
     if number % 2 == 0:
+        calculated_primes[number] = False
         return False
+
     for num in range(3, int(number ** 0.5) + 1, 2):
         if number % num == 0:
+            calculated_primes[number] = False
             return False
+
+    calculated_primes[number] = True
     return True
 
 
