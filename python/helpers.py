@@ -2,9 +2,13 @@
 next_primes = {
     2: 3
 }
-
-divisable_by = {}
-calculated_primes = {}
+divisable_by = {
+    1: [1]
+}
+calculated_primes = {
+    1: False,
+    2: True
+}
 
 
 def get_prime_numbers_until(highest_number):
