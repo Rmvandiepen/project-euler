@@ -1,4 +1,4 @@
-size = 300
+size = 498
 solutions_map = {}
 
 

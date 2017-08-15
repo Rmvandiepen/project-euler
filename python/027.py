@@ -1,8 +1,10 @@
-from helpers import is_prime, product
+from helpers import is_prime, get_prime_numbers_until
 
 highest_combo = (0, 0, 0)
+primes = get_prime_numbers_until(1001)
+
 for a in range(-999, 1000):
-    for b in range(-1000, 1001):
+    for b in primes:
         n = 0
         while True:
             number = n ** 2 + a * n + b
@@ -14,6 +16,6 @@ for a in range(-999, 1000):
                 break
             n += 1
 
-print(product([highest_combo[0], highest_combo[1]]))
+print(highest_combo[0] * highest_combo[1])
 
 
