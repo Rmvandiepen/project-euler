@@ -1,4 +1,6 @@
+import time
 
+start_time = 0
 next_primes = {
     2: 3
 }
@@ -105,6 +107,18 @@ def get_factorial(number):
     return result
 
 
+def get_smallest_fraction(numerator, denominator):
+    divisor = get_biggest_common_divisor(numerator, denominator)
+    return int(numerator / divisor), int(denominator / divisor)
+
+
+def get_biggest_common_divisor(num1, num2):
+    divisables_num1 = get_divisables(num1)
+    divisables_num2 = get_divisables(num2)
+    common_divisables = set(divisables_num1).intersection(divisables_num2)
+    return max(common_divisables)
+
+
 def get_base_x_value(number, base):
     i = 1
     while True:
@@ -127,3 +141,12 @@ def get_base_x_value(number, base):
 
 def get_binary_value(number):
     return get_base_x_value(number, 2)
+
+
+def st():
+    global start_time
+    start_time = int(time.time() * 1000)
+
+
+def pt():
+    print('{time} ms'.format(time=int(time.time() * 1000) - start_time))
