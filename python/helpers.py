@@ -15,7 +15,7 @@ calculated_primes = {
 
 def get_prime_numbers_until(highest_number):
     prime_numbers = [True] * highest_number
-    for x in range(2, int(highest_number ** 0.5)):
+    for x in range(2, int(highest_number ** 0.5) + 1):
         if not prime_numbers[x]:
             continue
         y = x
