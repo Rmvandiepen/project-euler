@@ -4,7 +4,6 @@ def get_recuring_cycle(base, divider):
     numbers_tried = []
     left = base
     while True:
-        # print(left, cycle, numbers_tried)
         if left in numbers_tried:
             return cycle[1:]
         numbers_tried.append(left)
