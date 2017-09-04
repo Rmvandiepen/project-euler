@@ -24,6 +24,13 @@ calculated_primes_until_list = []
 calculated_primes_until = 0
 
 
+def precalc_primes_until(num):
+    primes = get_prime_numbers_until(num)
+    for index, prime in enumerate(primes[:-1]):
+        next_primes[prime] = primes[index + 1]
+        calculated_primes[prime] = True
+
+
 def get_prime_numbers_until(highest_number):
     global calculated_primes_until, calculated_primes_until_list
     if highest_number <= calculated_primes_until:
@@ -101,17 +108,14 @@ def is_pandigital(value, start=1):
 def get_divisables(number):
     if number in divisable_by:
         return list(divisable_by[number])
-
     if is_prime(number):
         divisable_by[number] = [1, number]
         return [1, number]
-
     divisor = 2
     while True:
         if number % divisor == 0:
             break
         divisor = get_next_prime(divisor)
-
     divisors = get_divisables(number / divisor) + [number]
     to_add = []
     for divisor in divisors:
@@ -127,9 +131,7 @@ def get_prime_divisables(number):
     time_spend_start('divisables')
     divisables = get_divisables(number)
     time_spend_end('divisables')
-    time_spend_start('primes')
     res = [prime for prime in divisables if is_prime(prime)]
-    time_spend_end('primes')
     return res
 
 
@@ -139,14 +141,42 @@ def get_prime_factors(number):
 
     prime_factors = []
     divisables = get_divisables(number)
-    for divisor in divisables:
-        if is_prime(divisor):
+
+    for divisor in sorted(divisables):
+        while divisor != 1 and number % divisor == 0:
             prime_factors.append(divisor)
             number /= divisor
-
-    if number > 1:
-        prime_factors += get_prime_factors(number)
+        if number == 1:
+            break
     return sorted(prime_factors)
+
+
+# def get_prime_factors(number):
+#     prime = 2
+#     primes = []
+#     while prime < int(number ** 0.5):
+#         prime = 2
+#         while number % prime != 0:
+#             prime = get_next_prime(prime)
+#         primes.append(prime)
+#     if number != 1:
+#         return [number]
+#     return primes
+
+    # if is_prime(number):
+    #     return [number]
+    #
+    # prime_factors = []
+    # divisables = get_divisables(number)
+    # for divisor in divisables:
+    #     if is_prime(divisor):
+    #         prime_factors.append(divisor)
+    #         number /= divisor
+    #
+    # if number > 1:
+    #     prime_factors += get_prime_factors(number)
+    #
+    # return sorted(prime_factors)
 
 
 def product(int_list):
@@ -216,6 +246,10 @@ def time_spend_start(tag):
 def time_spend_end(tag):
     global time_spend
     time_spend[tag] += int(time.time() * 1000) - time_spend_start_times[tag]
+
+
+def is_permutation(a, b):
+    return sorted(list(str(a))) == sorted(list(str(b)))
 
 
 def pt():
