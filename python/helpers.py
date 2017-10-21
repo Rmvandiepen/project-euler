@@ -148,7 +148,7 @@ def get_prime_factors(number):
             number /= divisor
         if number == 1:
             break
-    return sorted(prime_factors)
+    return prime_factors
 
 
 # def get_prime_factors(number):

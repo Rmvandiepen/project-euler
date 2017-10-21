@@ -14,4 +14,4 @@ for x in range(1, 100000):
             break
         n += 1
 
-print(sorted(concatenated_products))
+print(sorted([int(x) for x in concatenated_products])[-1])

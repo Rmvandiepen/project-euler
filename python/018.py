@@ -16,7 +16,7 @@ pyramid = [
     [4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23]
 ]
 clean_up = {}
-highest_routes = {(0, 0): ([], 0)}
+highest_routes = {(0, 0): 0}
 y = 1
 while y < len(pyramid):
     for x in range(len(pyramid[y])):
@@ -25,17 +25,17 @@ while y < len(pyramid):
         if x - 1 >= 0:
             prev_x = x - 1
             prev_pos = (prev_y, prev_x)
-            route, num = highest_routes[prev_pos]
+            num = highest_routes[prev_pos]
             num += pyramid[prev_y][prev_x]
-            if position not in highest_routes or highest_routes[position][1] < num:
-                highest_routes[position] = (route + [prev_x], num)
+            if position not in highest_routes or highest_routes[position] < num:
+                highest_routes[position] = num
         if x <= len(pyramid[prev_y]) - 1:
             prev_x = x
             prev_pos = (prev_y, prev_x)
-            route, num = highest_routes[prev_pos]
+            num = highest_routes[prev_pos]
             num += pyramid[prev_y][prev_x]
-            if position not in highest_routes or highest_routes[position][1] < num:
-                highest_routes[position] = (route + [prev_x], num)
+            if position not in highest_routes or highest_routes[position] < num:
+                highest_routes[position] = num
 
     highest_routes = {
         key: value for key, value in highest_routes.items() if key[0] == y
@@ -44,6 +44,6 @@ while y < len(pyramid):
 
 highest_sum = 0
 for key, value in highest_routes.items():
-    sum_value = value[1] + pyramid[key[0]][key[1]]
+    sum_value = value + pyramid[key[0]][key[1]]
     highest_sum = max(highest_sum, sum_value)
 print(highest_sum)

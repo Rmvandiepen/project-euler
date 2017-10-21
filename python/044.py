@@ -1,4 +1,3 @@
-
 pentagonal_numbers = {}
 highest_pentagonal = 0
 pentagonal_index = 0
@@ -21,6 +20,7 @@ def get_pentagonal_number(n):
     while n not in pentagonal_numbers:
         get_next_pentagonal_number()
     return pentagonal_numbers[n]
+
 
 # j = 2100
 # while True:
@@ -51,11 +51,11 @@ pentset = set()
 i = 1
 check = False
 
-while check == False:
-    ti = i*(3*i-1)/2
+while not check:
+    ti = i * (3 * i - 1) / 2
     for j in pentset:
-        if ti-j in pentset and ti-2*j in pentset:
-            print ("j:", j, "k:", ti-j, "Difference:", ti-2*j, "Sum:", ti)
+        if ti - j in pentset and ti - 2 * j in pentset:
+            print(ti - 2 * j)
             check = True
             break
     pentset.add(ti)
